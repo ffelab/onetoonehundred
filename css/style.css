@@ -1,0 +1,128 @@
+@font-face {
+	font-family: "JetBrainsMono";
+	src: url(./fonts/JetBrainsMono-VariableFont_wght.ttf);
+}
+@font-face {
+	font-family: "Radio";
+	src: url(./fonts/PPRadioGrotesk-Regular.ttf);
+}
+:root {
+	--size: 10;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	touch-action: none;
+}
+
+body {
+	height: 100dvh;
+	width: 100dvw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgb(255, 255, 255);
+}
+body.dark {
+	background-color: rgba(0, 2, 37, 0.5);
+}
+
+#zoom-container {
+	box-shadow: 0px 0px 80px 70px rgb(255, 255, 255);
+	position: absolute;
+
+	/* transform: translate(-50%, -50%); */
+	width: 96dvw;
+	aspect-ratio: 1/1;
+	display: grid;
+	grid-template-columns: repeat(var(--size), calc(96dvw / var(--size)));
+	background-color: rgb(255, 255, 255);
+	/* border: 0.4px solid black; */
+	z-index: 1000;
+}
+#zoom-container.hidden {
+	display: none;
+}
+.hidden {
+	display: none;
+}
+
+.zoom-box {
+	aspect-ratio: 1 / 1;
+	max-width: calc(96dvw / var(--size));
+	border: 1.2px solid rgb(0, 2, 37);
+}
+.no-pointer-events {
+	pointer-events: none;
+}
+#rätsel-container {
+	z-index: 2;
+	display: grid;
+	grid-template-columns: repeat(7, calc(87dvw / var(--size)));
+	gap: 1vw;
+	height: calc(87dvh - 10.9dvh);
+	overflow: hidden;
+	transform: scale(1.25);
+}
+
+.box {
+	overflow: hidden;
+	position: relative;
+	aspect-ratio: 1 / 1;
+	max-width: calc(87dvw / var(--size));
+	display: grid;
+	grid-template-columns: repeat(
+		var(--size),
+		calc(87dvw / var(--size) / var(--size))
+	);
+}
+.inside-box {
+	pointer-events: none;
+	position: relative;
+	aspect-ratio: 1 / 1;
+	max-width: calc(87dvw / var(--size) / var(--size));
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 0.01px solid rgb(0, 2, 37);
+}
+
+.black {
+	box-sizing: content-box;
+	background: rgb(0, 2, 37);
+	cursor: default;
+}
+.white {
+	box-sizing: content-box;
+	background: rgb(255, 255, 255);
+	cursor: default;
+}
+
+@media (min-width: 550px) {
+	#rätsel-container {
+		margin-left: 13px;
+		grid-template-columns: repeat(var(--size), 75px);
+		gap: 8px;
+		transform: scale(1);
+		height: fit-content;
+	}
+	.box {
+		max-width: 75px;
+		grid-template-columns: repeat(var(--size), 7.5px);
+	}
+	.inside-box {
+		max-width: 7.5px;
+	}
+	#zoom-container {
+		width: 96dvh;
+		grid-template-columns: repeat(var(--size), calc(96dvh / var(--size)));
+		/* border: 0.4px solid black; */
+	}
+	.zoom-box {
+		max-width: calc(96dvh / var(--size));
+		border: 1.7px solid rgb(0, 2, 37);
+	}
+}
