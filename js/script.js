@@ -4,7 +4,8 @@ const zoomContainer = document.getElementById("zoom-container");
 let size = 10;
 let halfsize = 10;
 let realsize = 10;
-if (mobileCheck()) {
+if (!mobileCheck()) {
+} else {
 	size = 14;
 	halfsize = 7;
 }
