@@ -59,7 +59,8 @@ body.dark {
 #rätsel-container {
 	z-index: 2;
 	display: grid;
-	max-width: 70dvw;
+	max-height: 90dvh;
+	height: fit-content;
 	grid-template-columns: repeat(auto-fill, calc(80dvw / var(--size)));
 	gap: 1vw;
 	height: fit-content;
