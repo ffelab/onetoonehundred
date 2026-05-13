@@ -59,10 +59,11 @@ body.dark {
 #rätsel-container {
 	z-index: 2;
 	display: grid;
-	grid-template-columns: repeat(7, calc(85dvw / var(--size)));
+	max-width: 70dvw;
+	grid-template-columns: repeat(auto-fill, calc(80dvw / var(--size)));
 	gap: 1vw;
 	height: fit-content;
-	overflow: hidden;
+	/* overflow: hidden; */
 	transform: scale(1.25);
 }
 
@@ -76,14 +77,14 @@ body.dark {
 	display: grid;
 	grid-template-columns: repeat(
 		var(--size),
-		calc(85dvw / var(--size) / var(--size))
+		calc(80dvw / var(--size) / var(--size))
 	);
 }
 .inside-box {
 	pointer-events: none;
 	position: relative;
 	aspect-ratio: 1 / 1;
-	max-width: calc(85dvw / var(--size) / var(--size));
+	max-width: calc(80dvw / var(--size) / var(--size));
 
 	display: flex;
 	align-items: center;
