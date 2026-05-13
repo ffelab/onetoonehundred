@@ -107,32 +107,34 @@ const body = document.querySelector("body");
 
 container.addEventListener("click", (e) => {
 	if (!e.target.dataset.row) return;
-	if (!mobileCheck()) {
-		redraw(e);
-	} else {
-		zoomGrid = [];
-		zoomContainer.innerHTML = "";
 
-		zoomContainer.classList.remove("hidden");
-		body.classList.add("dark");
+	zoomGrid = [];
+	zoomContainer.innerHTML = "";
 
-		for (let r = 0; r < realsize; r++) {
-			zoomGrid[r] = [];
-			for (let c = 0; c < realsize; c++) {
-				const row = e.target.dataset.row;
-				const col = e.target.dataset.col;
-				const div = document.createElement("div");
-				div.className = "zoom-box";
+	zoomContainer.classList.remove("hidden");
+	body.classList.add("dark");
 
-				if (grid[row][col][r][c].el.classList.contains("black")) {
-					div.classList.add("black");
-				}
-				zoomContainer.appendChild(div);
-				zoomGrid[r][c] = { el: div };
+	for (let r = 0; r < realsize; r++) {
+		zoomGrid[r] = [];
+		for (let c = 0; c < realsize; c++) {
+			const row = e.target.dataset.row;
+			const col = e.target.dataset.col;
+			const div = document.createElement("div");
+			div.className = "zoom-box";
+
+			if (grid[row][col][r][c].el.classList.contains("black")) {
+				div.classList.add("black");
 			}
+			zoomContainer.appendChild(div);
+			zoomGrid[r][c] = { el: div };
 		}
 	}
 });
+
+window.oncontextmenu = function (e) {
+	redraw(e);
+	return false; // cancel default menu
+};
 
 zoomContainer.addEventListener("click", () => {
 	zoomContainer.classList.add("hidden");
