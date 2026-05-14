@@ -105,10 +105,10 @@ body.dark {
 
 @media (min-width: 550px) {
 	#rätsel-container {
-		margin-left: 13px;
 		grid-template-columns: repeat(var(--size), calc(80dvh / var(--size)));
 		gap: 8px;
 		transform: scale(1);
+		max-height: 100%;
 	}
 	.box {
 		max-width: calc(87dvh / var(--size));
